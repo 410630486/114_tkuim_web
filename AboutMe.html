@@ -3,64 +3,841 @@
   <head>
     <meta charset="UTF-8">
     <title>About Me</title>
+    <style>
+      /* ===== 全域重置樣式 ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      /* ===== 主體背景與字體 ===== */
+      body {
+        font-family: 'Courier New', 'Consolas', 'Microsoft JhengHei', monospace;
+        line-height: 1.6;
+        background: 
+          linear-gradient(135deg, #0a0a0a 0%, #1a0033 30%, #001122 70%, #000000 100%),
+          repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 255, 255, 0.03) 2px, rgba(0, 255, 255, 0.03) 4px),
+          repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 0, 255, 0.03) 2px, rgba(255, 0, 255, 0.03) 4px);
+        background-size: 100% 100%, 50px 50px, 50px 50px;
+        color: #00ffff;
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+      
+      /* ===== 動態背景效果 ===== */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+          radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+          linear-gradient(0deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 0, 255, 0.05) 75%, rgba(255, 0, 255, 0.05) 76%, transparent 77%);
+        background-size: 60px 60px, 80px 80px, 100% 100%;
+        animation: cyberpulse 4s ease-in-out infinite alternate;
+        pointer-events: none;
+        z-index: 1;
+      }
+      
+      /* ===== 流星顆粒效果 ===== */
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        background-image: 
+          radial-gradient(2px 2px at 20px 30px, rgba(0, 255, 255, 0.8), transparent),
+          radial-gradient(2px 2px at 40px 70px, rgba(255, 0, 255, 0.6), transparent),
+          radial-gradient(1px 1px at 90px 40px, rgba(0, 255, 255, 0.9), transparent),
+          radial-gradient(1px 1px at 130px 80px, rgba(255, 0, 255, 0.7), transparent),
+          radial-gradient(2px 2px at 160px 30px, rgba(0, 255, 255, 0.5), transparent);
+        background-repeat: repeat;
+        background-size: 200px 100px;
+        animation: meteor 8s linear infinite;
+      }
+      
+      .meteor-layer-1 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        background-image: 
+          linear-gradient(45deg, transparent 40%, rgba(0, 255, 255, 0.4) 50%, transparent 60%),
+          linear-gradient(45deg, transparent 30%, rgba(255, 0, 255, 0.3) 50%, transparent 70%);
+        background-size: 200px 20px, 300px 15px;
+        animation: meteor 6s linear infinite;
+      }
+      
+      .meteor-layer-2 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        background-image: 
+          linear-gradient(30deg, transparent 45%, rgba(0, 255, 255, 0.6) 50%, transparent 55%),
+          linear-gradient(60deg, transparent 35%, rgba(255, 0, 255, 0.4) 50%, transparent 65%);
+        background-size: 150px 10px, 250px 12px;
+        animation: meteorFast 4s linear infinite;
+      }
+      
+      .meteor-layer-3 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        background-image: 
+          linear-gradient(60deg, transparent 42%, rgba(0, 255, 255, 0.3) 50%, transparent 58%),
+          linear-gradient(30deg, transparent 38%, rgba(255, 0, 255, 0.5) 50%, transparent 62%);
+        background-size: 400px 25px, 180px 8px;
+        animation: meteorSlow 12s linear infinite;
+      }
+      
+      /* ===== 動畫關鍵幀 ===== */
+      @keyframes cyberpulse {
+        0% { opacity: 0.3; transform: scale(1); }
+        100% { opacity: 0.7; transform: scale(1.02); }
+      }
+      
+      @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+
+      
+      @keyframes pulseRing {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.4);
+          opacity: 0;
+        }
+      }
+      
+      @keyframes meteor {
+        0% {
+          transform: translateX(-100vw) translateY(-100vh) rotate(-45deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(100vw) translateY(100vh) rotate(-45deg);
+          opacity: 0;
+        }
+      }
+      
+      @keyframes meteorFast {
+        0% {
+          transform: translateX(-150vw) translateY(-150vh) rotate(-30deg);
+          opacity: 0;
+        }
+        5% {
+          opacity: 0.8;
+        }
+        95% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateX(150vw) translateY(150vh) rotate(-30deg);
+          opacity: 0;
+        }
+      }
+      
+      @keyframes meteorSlow {
+        0% {
+          transform: translateX(-80vw) translateY(-80vh) rotate(-60deg);
+          opacity: 0;
+        }
+        15% {
+          opacity: 0.6;
+        }
+        85% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateX(120vw) translateY(120vh) rotate(-60deg);
+          opacity: 0;
+        }
+      }
+      
+
+      
+
+      
+      /* ===== 主要容器佈局 ===== */
+      .main-wrapper {
+        display: flex;
+        min-height: 100vh;
+      }
+      
+      /* ===== 左側面板樣式 ===== */
+      .left-panel {
+        width: 350px;
+        background: 
+          linear-gradient(145deg, rgba(0, 0, 0, 0.9) 0%, rgba(10, 10, 30, 0.95) 50%, rgba(0, 0, 0, 0.9) 100%);
+        color: #00ffff;
+        padding: 40px 30px;
+        position: relative;
+        z-index: 2;
+        box-shadow: 
+          5px 0 20px rgba(0, 255, 255, 0.3),
+          inset 0 0 50px rgba(0, 255, 255, 0.1);
+        border-right: 2px solid rgba(0, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+      }
+      
+      .left-panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 10px,
+          rgba(0, 255, 255, 0.05) 10px,
+          rgba(0, 255, 255, 0.05) 11px
+        );
+        pointer-events: none;
+      }
+      
+      .left-panel::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -1px;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(
+          to bottom, 
+          rgba(0, 255, 255, 0) 0%,
+          rgba(0, 255, 255, 1) 25%,
+          rgba(255, 0, 255, 1) 75%,
+          rgba(255, 0, 255, 0) 100%
+        );
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        animation: neonpulse 2s ease-in-out infinite alternate;
+      }
+      
+      @keyframes neonpulse {
+        0% { opacity: 0.7; box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
+        100% { opacity: 1; box-shadow: 0 0 30px rgba(0, 255, 255, 1), 0 0 40px rgba(255, 0, 255, 0.5); }
+      }
+      
+      /* ===== 右側面板樣式 ===== */
+      .right-panel {
+        flex: 1;
+        padding: 40px 50px;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(15px);
+        position: relative;
+        z-index: 2;
+      }
+      
+      .right-panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 100px,
+            rgba(0, 255, 255, 0.03) 100px,
+            rgba(0, 255, 255, 0.03) 101px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 50px,
+            rgba(255, 0, 255, 0.02) 50px,
+            rgba(255, 0, 255, 0.02) 51px
+          );
+        pointer-events: none;
+      }
+      
+      /* ===== 個人資料區塊 ===== */
+      .profile-section {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 2px solid rgba(0, 255, 255, 0.5);
+        box-shadow: 0 2px 10px rgba(0, 255, 255, 0.3);
+      }
+      
+      .profile-img-container {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      
+      .profile-img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #00ffff;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        z-index: 10;
+        filter: contrast(1.2) saturate(1.3) hue-rotate(180deg);
+        animation: cyberspin 10s linear infinite;
+        box-shadow: 
+          0 0 30px rgba(0, 255, 255, 0.5),
+          inset 0 0 20px rgba(0, 255, 255, 0.2);
+      }
+      
+
+      
+      /* ===== 脈衝環效果 ===== */
+      .pulse-ring {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 180px;
+        height: 180px;
+        border: 2px solid rgba(0, 255, 255, 0.4);
+        border-radius: 50%;
+        animation: pulseRing 2s ease-out infinite;
+        pointer-events: none;
+        z-index: 8;
+      }
+      
+      .pulse-ring:nth-child(2) {
+        animation-delay: 0.5s;
+        border-color: rgba(255, 0, 255, 0.4);
+      }
+      
+      .pulse-ring:nth-child(3) {
+        animation-delay: 1s;
+        border-color: rgba(0, 255, 255, 0.3);
+      }
+      
+      .pulse-ring:nth-child(4) {
+        animation-delay: 1.5s;
+        border-color: rgba(255, 0, 255, 0.3);
+      }
+      
+
+      
+      @keyframes cyberspin {
+        0% { filter: contrast(1.2) saturate(1.3) hue-rotate(0deg); }
+        100% { filter: contrast(1.2) saturate(1.3) hue-rotate(360deg); }
+      }
+      
+      .profile-img:hover {
+        transform: scale(1.1);
+        border-color: #ff00ff;
+        animation: cyberglitch 0.5s ease-in-out;
+        box-shadow: 
+          0 0 50px rgba(255, 0, 255, 0.8),
+          inset 0 0 30px rgba(255, 0, 255, 0.3);
+      }
+      
+
+
+
+
+
+
+      /* ===== 標題樣式 ===== */
+      h1 {
+        font-size: 2.2em;
+        font-weight: 700;
+        letter-spacing: 3px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        color: #00ffff;
+        text-shadow: 
+          0 0 5px #00ffff,
+          0 0 10px #00ffff,
+          0 0 15px #00ffff,
+          0 0 20px #ff00ff;
+        position: relative;
+        animation: textglitch 3s ease-in-out infinite;
+      }
+      
+      @keyframes textglitch {
+        0%, 100% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff, 0 0 20px #ff00ff; }
+        50% { text-shadow: 2px 0 5px #ff00ff, -2px 0 10px #00ffff, 0 0 15px #00ffff, 0 0 20px #ff00ff; }
+      }
+      
+      h1::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+        box-shadow: 0 0 10px #00ffff;
+        animation: lineglitch 2s ease-in-out infinite;
+      }
+      
+      @keyframes lineglitch {
+        0%, 100% { box-shadow: 0 0 10px #00ffff; }
+        50% { box-shadow: 0 0 15px #ff00ff, 0 0 20px #00ffff; }
+      }
+      
+      .subtitle {
+        font-size: 1.1em;
+        color: #ff00ff;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-shadow: 0 0 8px #ff00ff;
+        opacity: 0.9;
+      }
+      
+      /* ===== 資訊區塊樣式 ===== */
+      .info-section {
+        margin-bottom: 35px;
+      }
+      
+      .info-section h3 {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-bottom: 1px solid #00ffff;
+        padding-bottom: 8px;
+        color: #00ffff;
+        text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+      }
+      
+      .info-item {
+        margin-bottom: 12px;
+        padding-left: 15px;
+        position: relative;
+      }
+      
+      .info-item::before {
+        content: '▶';
+        position: absolute;
+        left: 0;
+        color: #ff00ff;
+        font-size: 0.8em;
+        text-shadow: 0 0 5px rgba(255, 0, 255, 0.8);
+      }
+      
+      /* ===== 內容區塊樣式 ===== */
+      .content-section {
+        background: 
+          linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 10, 30, 0.9) 100%);
+        margin-bottom: 30px;
+        border: 1px solid rgba(0, 255, 255, 0.3);
+        border-left: 4px solid #00ffff;
+        box-shadow: 
+          0 8px 25px rgba(0, 255, 255, 0.2),
+          inset 0 1px 0 rgba(0, 255, 255, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+      
+      .content-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 255, 255, 0.1),
+          rgba(255, 0, 255, 0.1),
+          transparent
+        );
+        transition: left 0.8s ease;
+      }
+      
+      .content-section:hover {
+        box-shadow: 
+          0 15px 35px rgba(0, 255, 255, 0.3),
+          0 0 50px rgba(255, 0, 255, 0.2),
+          inset 0 1px 0 rgba(0, 255, 255, 0.2);
+        transform: translateX(10px) translateY(-5px);
+        border-color: #ff00ff;
+        border-left-color: #ff00ff;
+      }
+      
+      .content-section:hover::before {
+        left: 100%;
+      }
+      
+      .section-header {
+        background: linear-gradient(90deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+        color: #00ffff;
+        padding: 15px 25px;
+        font-size: 1.3em;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-bottom: 2px solid #00ffff;
+        text-shadow: 0 0 10px #00ffff;
+        position: relative;
+      }
+      
+      .section-header::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, #00ffff, #ff00ff);
+        box-shadow: 0 0 10px #00ffff;
+      }
+      
+      .section-content {
+        padding: 25px;
+      }
+      
+      /* ===== 表格樣式 ===== */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+      
+      th {
+        background: rgba(0, 255, 255, 0.2);
+        color: #00ffff;
+        padding: 12px 15px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid #00ffff;
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+      }
+      
+      td {
+        padding: 12px 15px;
+        border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+        color: #00ffff;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      
+      tr:last-child td {
+        border-bottom: none;
+      }
+      
+      tr:hover {
+        background: rgba(255, 0, 255, 0.1);
+      }
+      
+      tr:hover td {
+        color: #ff00ff;
+        text-shadow: 0 0 5px rgba(255, 0, 255, 0.8);
+      }
+      
+      /* ===== 列表樣式 ===== */
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      li {
+        background: rgba(0, 255, 255, 0.1);
+        color: #00ffff;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-left: 3px solid #00ffff;
+        border: 1px solid rgba(0, 255, 255, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        backdrop-filter: blur(5px);
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+      }
+      
+      li:hover {
+        background: rgba(255, 0, 255, 0.15);
+        transform: translateX(15px);
+        border-color: #ff00ff;
+        border-left-color: #ff00ff;
+        color: #ff00ff;
+        text-shadow: 0 0 8px rgba(255, 0, 255, 0.8);
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+      }
+      
+      /* ===== 連結樣式 ===== */
+      a {
+        color: #00ffff;
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.6);
+      }
+      
+      a:hover {
+        color: #ff00ff;
+        border-bottom: 1px solid #ff00ff;
+        text-shadow: 0 0 8px rgba(255, 0, 255, 0.8);
+      }
+      
+      /* ===== 文本元素樣式 ===== */
+      p {
+        margin: 15px 0;
+        font-size: 1.1em;
+        text-align: justify;
+        color: #00ffff;
+        text-shadow: 0 0 3px rgba(0, 255, 255, 0.5);
+      }
+      
+      strong {
+        color: #ff00ff;
+        font-weight: 700;
+        text-shadow: 0 0 5px rgba(255, 0, 255, 0.8);
+      }
+      
+      em {
+        font-style: italic;
+        color: #00ffff;
+        text-shadow: 0 0 3px rgba(0, 255, 255, 0.6);
+      }
+      
+      span {
+        background: linear-gradient(45deg, #00ffff, #ff00ff);
+        color: #000000;
+        padding: 3px 10px;
+        font-weight: 700;
+        border-radius: 3px;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      }
+      
+      /* ===== 左側面板專用樣式 ===== */
+      .left-panel-table {
+        width: 100%;
+        font-size: 0.9em;
+        margin: 10px 0;
+      }
+      
+      .left-panel-table th {
+        background: rgba(0, 255, 255, 0.3) !important;
+        color: #00ffff !important;
+        padding: 8px;
+        font-size: 0.8em;
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+        border-bottom: 1px solid #00ffff;
+      }
+      
+      .left-panel-table td {
+        background: rgba(0, 0, 0, 0.7) !important;
+        color: #00ffff !important;
+        padding: 8px;
+        border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      }
+      
+      .left-panel-list {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .left-panel-list li {
+        background: rgba(0, 255, 255, 0.2) !important;
+        color: #00ffff !important;
+        padding: 8px 12px;
+        margin: 5px 0;
+        border-radius: 3px;
+        border: 1px solid rgba(0, 255, 255, 0.4);
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.6);
+        transition: all 0.3s ease;
+      }
+      
+      .left-panel-list li:hover {
+        background: rgba(255, 0, 255, 0.2) !important;
+        color: #ff00ff !important;
+        text-shadow: 0 0 8px rgba(255, 0, 255, 0.8);
+        transform: translateX(5px);
+      }
+      
+      /* ===== 輔助樣式類別 ===== */
+      .section-title {
+        font-size: 1.1em;
+        font-weight: 600;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-bottom: 1px solid #00ffff;
+        padding-bottom: 8px;
+        color: #00ffff;
+        text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+      }
+      
+      .contact-link {
+        color: #00ffff !important;
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.6);
+      }
+      
+      .contact-link:hover {
+        color: #ff00ff !important;
+        text-shadow: 0 0 8px rgba(255, 0, 255, 0.8);
+      }
+      
+      .inline-header {
+        margin: 0;
+        font-size: inherit;
+      }
+    </style>
   </head>
   <body>
-    <div>
-      <h1>關於我</h1>
-      <table border="1">
-        <tr>
-          <th>姓名</th>
-          <td><strong>葉家亨</strong></td>
-        </tr>
-        <tr>
-          <th>科系</th>
-          <td><em>資訊管理學系</em></td>
-        </tr>
-        <tr>
-          <th>年級</th>
-          <td>大四</td>
-        </tr>
-      </table>
-    </div>
-    <div>
-      <h2>興趣與愛好</h2>
-      <ul>
-        <li>聽音樂</li>
-        <li>寫程式</li>
-      </ul>
-    </div>
-    <div>
-      <h3>學習經歷</h3>
-      <table border="1">
-        <tr>
-          <th>時間</th>
-          <th>經歷</th>
-        </tr>
-        <tr>
-          <td>2018-2021</td>
-          <td>新北市私立南山高中 普通科</td>
-        </tr>
-        <tr>
-          <td>2021-2025</td>
-          <td>淡江大學 資訊管理學系</td>
-        </tr>
-      </table>
-    </div>
-    <div>
-      <h4>聯絡方式</h4>
-      <p>
-  Email：410630486@gms.tku.edu.tw
-      </p>
-    </div>
-    <div>
-      <h5>未來目標</h5>
-      <p>
-        希望能精通<strong>前端與後端</strong>技術，<em>成為全端工程師</em>，並參與大型專案開發。
-      </p>
-    </div>
-    <div>
-      <h6>小結</h6>
-      <p>感謝您的瀏覽！</p>
+    <!-- 流星效果層 -->
+    <div class="meteor-layer-1"></div>
+    <div class="meteor-layer-2"></div>
+    <div class="meteor-layer-3"></div>
+    
+    <div class="main-wrapper">
+      <!-- 左側面板：個人資訊 -->
+      <div class="left-panel">
+        <div class="profile-section">
+          <div class="profile-img-container">
+            <!-- 脈衝環效果 -->
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring"></div>
+            
+            <!-- 頭像 -->
+            <img src="giga.jpg" alt="葉家亨的個人照片" class="profile-img">
+          </div>
+          <h1>葉家亨</h1>
+          <div class="subtitle">資訊管理學系 大四</div>
+        </div>
+        
+        <div class="info-section">
+          <h3>基本資訊</h3>
+          <table class="left-panel-table">
+            <tr>
+              <th>項目</th>
+              <th>資訊</th>
+            </tr>
+            <tr>
+              <td>姓名</td>
+              <td><strong>葉家亨</strong></td>
+            </tr>
+            <tr>
+              <td>科系</td>
+              <td><em>資訊管理學系</em></td>
+            </tr>
+            <tr>
+              <td>年級</td>
+              <td>大四</td>
+            </tr>
+          </table>
+        </div>
+        
+        <div class="info-section">
+          <h4 class="section-title">興趣與愛好</h4>
+          <ul class="left-panel-list">
+            <li>🎵 聽音樂</li>
+            <li>💻 寫程式</li>
+          </ul>
+        </div>
+        
+        <div class="info-section">
+          <h5 class="section-title">聯絡方式</h5>
+          <div class="info-item">
+            📧 <a href="mailto:410630486@gms.tku.edu.tw" class="contact-link">410630486@gms.tku.edu.tw</a>
+          </div>
+          <div class="info-item">
+            🏫 <a href="https://www.tku.edu.tw" target="_blank" class="contact-link">淡江大學</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 右側面板：詳細內容 -->
+      <div class="right-panel">
+        <div class="content-section">
+          <div class="section-header">
+            <h2 class="inline-header">學習經歷</h2>
+          </div>
+          <div class="section-content">
+            <table>
+              <tr>
+                <th>時間</th>
+                <th>經歷</th>
+              </tr>
+              <tr>
+                <td>2018-2021</td>
+                <td>新北市私立南山高中 普通科</td>
+              </tr>
+              <tr>
+                <td>2021-2025</td>
+                <td>淡江大學 資訊管理學系</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        
+        <div class="content-section">
+          <div class="section-header">未來目標</div>
+          <div class="section-content">
+            <p>
+              希望能精通<strong>前端與後端</strong>技術，<em>成為全端工程師</em>，並參與<span>大型專案開發</span>。
+            </p>
+          </div>
+        </div>
+        
+        <div class="content-section">
+          <div class="section-header">
+            <h4 class="inline-header">個人特質</h4>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li>具備良好的邏輯思維能力</li>
+              <li>對新技術保持學習熱忱</li>
+              <li>擅長團隊合作與溝通</li>
+              <li>注重細節與程式碼品質</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="content-section">
+          <div class="section-header">
+            <h6 class="inline-header">小結</h6>
+          </div>
+          <div class="section-content">
+            <p>
+              感謝您花時間瀏覽我的個人資料。我期待在未來的學習與工作中，能夠持續精進專業能力，
+              並為團隊創造價值。如有任何合作機會，歡迎隨時與我聯繫。
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
