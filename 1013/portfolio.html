@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio - Kris</title>
+  <!-- Bootstrap CSS (local in project) -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root { --main: #0d6efd; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(13,110,253,0.15); }
+    .btn-theme { border-radius: 50px; }
+    .skill-badge { font-size: 0.8rem; }
+    .hero-bg { background: linear-gradient(90deg, rgba(13,110,253,0.06), rgba(13,110,253,0.02)); }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Kris</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="切換導覽">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">首頁</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">關於</a></li>
+          <li class="nav-item"><a class="nav-link" href="#works">作品</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">聯絡</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="home" class="hero-bg py-5">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-md-7">
+          <h1 class="display-4 fw-bold">嗨，我是 Kris</h1>
+          <p class="lead">我是一名前端開發者，熱衷於使用 Bootstrap 建構響應式且美觀的介面。</p>
+          <p>
+            <a href="#works" class="btn btn-primary btn-theme me-2">查看作品</a>
+            <a href="#contact" class="btn btn-outline-primary btn-theme">聯絡我</a>
+          </p>
+        </div>
+        <div class="col-md-5 text-center">
+          <img src="https://via.placeholder.com/350x350" alt="Kris" class="img-fluid rounded-circle shadow" style="max-width:250px">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="bg-white py-5">
+    <div class="container">
+      <div class="row gy-4 align-items-center">
+        <div class="col-md-4 text-center">
+          <img src="https://via.placeholder.com/300" alt="photo" class="img-fluid rounded-circle">
+        </div>
+        <div class="col-md-8">
+          <h2 class="fw-bold">關於我</h2>
+          <p class="fs-5 text-muted">我擁有多年前端開發經驗，熟悉 HTML、CSS、JavaScript 以及 Bootstrap。喜歡將複雜的 UI 轉化為直覺的使用者體驗。</p>
+          <ul class="list-unstyled">
+            <li class="mb-2"><span class="fw-semibold text-primary">專長：</span> RWD、元件化設計、效能優化</li>
+            <li class="mb-2"><span class="text-info">興趣：</span> 攝影、設計、開源專案</li>
+            <li class="mb-2"><span class="fs-6 text-secondary">現居：</span> 台北市</li>
+          </ul>
+          <div class="alert alert-info" role="alert">目前正在尋找前端相關工作機會 — 歡迎聯絡我！</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="bg-light py-5">
+    <div class="container">
+      <h2 class="fw-bold mb-4">技能</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 card-hover">
+            <div class="card-body text-center">
+              <img src="https://via.placeholder.com/80" class="img-fluid mb-3" alt="html">
+              <h5 class="card-title">HTML &amp; CSS <span class="badge bg-primary skill-badge">Expert</span></h5>
+              <p class="card-text text-muted">熟悉語意化標記與樣式設計，能建立乾淨可維護的樣板。</p>
+              <div class="progress mb-2" style="height:8px">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 95%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 card-hover">
+            <div class="card-body text-center">
+              <img src="https://via.placeholder.com/80" class="img-fluid mb-3" alt="js">
+              <h5 class="card-title">JavaScript <span class="badge bg-success skill-badge">Advanced</span></h5>
+              <p class="card-text text-muted">能夠撰寫互動式元件、處理非同步與狀態管理。</p>
+              <div class="progress mb-2" style="height:8px">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 card-hover">
+            <div class="card-body text-center">
+              <img src="https://via.placeholder.com/80" class="img-fluid mb-3" alt="bs">
+              <h5 class="card-title">Bootstrap <span class="badge bg-info skill-badge">Pro</span></h5>
+              <p class="card-text text-muted">熟悉元件與排版，能快速以工具建立原型與生產環境頁面。</p>
+              <div class="progress mb-2" style="height:8px">
+                <div class="progress-bar bg-info" role="progressbar" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="works" class="bg-white py-5">
+    <div class="container">
+      <h2 class="fw-bold mb-4">作品集</h2>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 card-hover">
+            <img src="https://via.placeholder.com/800x600" class="card-img-top img-fluid" alt="project1">
+            <div class="card-body">
+              <h5 class="card-title">作品一</h5>
+              <p class="card-text text-muted">一個使用 Bootstrap 製作的響應式網站範例。</p>
+              <a href="#" class="btn btn-sm btn-outline-primary">查看詳情</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 card-hover">
+            <img src="https://via.placeholder.com/800x600" class="card-img-top img-fluid" alt="project2">
+            <div class="card-body">
+              <h5 class="card-title">作品二</h5>
+              <p class="card-text text-muted">一個小型前端專案，包含互動表單與動畫。</p>
+              <a href="#" class="btn btn-sm btn-outline-primary">查看詳情</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 card-hover">
+            <img src="https://via.placeholder.com/800x600" class="card-img-top img-fluid" alt="project3">
+            <div class="card-body">
+              <h5 class="card-title">作品三</h5>
+              <p class="card-text text-muted">一個作品展示與商品頁面設計範例。</p>
+              <a href="#" class="btn btn-sm btn-outline-primary">查看詳情</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-light py-5">
+    <div class="container">
+      <h2 class="fw-bold mb-4">聯絡我</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">姓名</label>
+              <input type="text" class="form-control" id="name" placeholder="你的姓名">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+              <label for="subject" class="form-label">主旨</label>
+              <input type="text" class="form-control" id="subject" placeholder="主旨">
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">訊息</label>
+              <textarea class="form-control" id="message" rows="6" placeholder="在此輸入訊息..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">送出</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+      <div class="mb-3">
+        <a href="#" class="text-white me-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+        <a href="#" class="text-white me-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zM4.943 12.306V5.169H2.542v7.137h2.401zM3.743 4.16c.837 0 1.357-.554 1.357-1.247-.015-.708-.52-1.247-1.342-1.247-.822 0-1.357.54-1.357 1.247 0 .693.52 1.247 1.327 1.247h.015zM13.458 12.306V8.413c0-2.1-1.123-3.077-2.62-3.077-1.204 0-1.737.662-2.037 1.128V5.169H6.993c.03.692 0 7.137 0 7.137h2.401v-3.986c0-.213.015-.426.078-.578.173-.426.566-.868 1.227-.868.867 0 1.214.655 1.214 1.615v3.817h2.345z"/></svg></a>
+        <a href="#" class="text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16"><path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.009-.422A6.67 6.67 0 0 0 16 3.542a6.554 6.554 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.084.797 3.286 3.286 0 0 0-5.595 2.994A9.325 9.325 0 0 1 1.114 2.1a3.286 3.286 0 0 0 1.018 4.381A3.323 3.323 0 0 1 .64 6.575v.041a3.286 3.286 0 0 0 2.633 3.218 3.203 3.203 0 0 1-.865.115c-.211 0-.417-.02-.616-.058a3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/></svg></a>
+      </div>
+      <div class="small">&copy; 2025 Kris. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
